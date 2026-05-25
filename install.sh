@@ -10,7 +10,7 @@ sudo apt install -y python3 python3-pip git
 
 # clone repo if not already inside
 if [ ! -d "terminal-game" ]; then
-    git clone https://github.com/YOUR_USERNAME/terminal-game.git
+    git clone https://github.com/asilvafx/terminal-game.git
 fi
 
 cd terminal-game
