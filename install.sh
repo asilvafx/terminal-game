@@ -4,31 +4,19 @@ set -e
 
 echo "Installing TERMINAL..."
 
-# system deps
 sudo apt update
-sudo apt install -y python3 python3-pip git
-
-# clone repo if not already inside
-if [ ! -d "terminal-game" ]; then
-    git clone https://github.com/asilvafx/terminal-game.git
-fi
+sudo apt install -y python3 python3-pip python3-venv git python3-full
 
 cd terminal-game
 
-# python deps
-pip3 install -r requirements.txt
-
-# env setup
-if [ ! -f .env ]; then
-    cp .env.example .env
-    echo "⚠️ Edit .env and add your Replicate API key"
+# create venv if not exists
+if [ ! -d "venv" ]; then
+    python3 -m venv venv
 fi
 
-# install systemd service
-sudo cp terminal.service /etc/systemd/system/terminal.service
+source venv/bin/activate
 
-sudo systemctl daemon-reexec
-sudo systemctl enable terminal.service
+pip install -r requirements.txt
 
-echo "INSTALL COMPLETE."
-echo "Run: sudo systemctl start terminal.service"
+echo "DONE. Run with:"
+echo "source venv/bin/activate && python game.py"
