@@ -1,0 +1,15 @@
+[Unit]
+Description=Terminal Horror RPG
+After=multi-user.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/terminal-game
+ExecStart=/usr/bin/python3 /home/pi/terminal-game/game.py
+Restart=always
+TTYPath=/dev/tty1
+StandardInput=tty
+
+[Install]
+WantedBy=multi-user.target
